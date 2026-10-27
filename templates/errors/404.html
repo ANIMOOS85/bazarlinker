@@ -1,0 +1,27 @@
+{% extends 'market/base.html' %}
+{% load static %}
+{% block title %}صفحه پیدا نشد | {{ settings.site_name|default:'بازار لینکَر' }}{% endblock %}
+{% block content %}
+<main class="wrap error-page" dir="rtl">
+  <section class="error-card" aria-labelledby="error-title">
+    <div class="error-visual" aria-hidden="true">
+      <div class="error-orbit orbit-one"></div>
+      <div class="error-orbit orbit-two"></div>
+      <div class="error-shop">
+        <div class="error-awning"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="error-shop-body"><span class="error-window"></span><span class="error-door"></span></div>
+      </div>
+      <span class="error-number">404</span>
+      <span class="error-spark spark-one">✦</span><span class="error-spark spark-two">⌖</span>
+    </div>
+    <span class="eyebrow">این مسیر به بازار ما نمی‌رسد</span>
+    <h1 id="error-title">اوه! این صفحه پیدا نشد</h1>
+    <p>احتمالاً لینک اشتباه وارد شده، آدرس تغییر کرده یا این صفحه دیگر وجود ندارد. نگران نباش؛ می‌توانی به بازار لینکَر برگردی و دوباره جست‌وجو کنی.</p>
+    <div class="error-actions">
+      <a class="btn primary" href="{% url 'home' %}">بازگشت به صفحه اصلی <span aria-hidden="true">←</span></a>
+      <button class="btn soft" type="button" onclick="history.back()">صفحه قبلی</button>
+    </div>
+    <div class="error-help"><span>✦</span> بازار لینکَر؛ کسب‌وکارهای محلی، نزدیک‌تر از همیشه</div>
+  </section>
+</main>
+{% endblock %}

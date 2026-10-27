@@ -1,0 +1,29 @@
+{% extends 'market/base.html' %}
+{% block title %}ویرایش آگهی | {{ settings.site_name|default:'بازار لینکَر' }}{% endblock %}
+{% block content %}
+<main class="wrap dashboard ad-edit-page">
+  <div class="dash-heading">
+    <div><span class="eyebrow">مدیریت آگهی</span><h1>ویرایش آگهی</h1><p>اطلاعات آگهی «{{ ad.title }}» را به‌روزرسانی کن.</p></div>
+    <a class="btn soft" href="{% url 'dashboard' %}">بازگشت به پنل</a>
+  </div>
+  <section class="panel">
+    <form method="post" enctype="multipart/form-data" class="form-grid">
+      {% csrf_token %}
+      <label class="wide">عنوان آگهی<input name="title" required maxlength="180" value="{{ ad.title }}"></label>
+      <label>قیمت (تومان)<input name="price" type="number" min="0" required value="{{ ad.price }}"></label>
+      <label>دسته‌بندی<select name="category">{% for c in categories %}<option value="{{ c }}" {% if ad.category == c %}selected{% endif %}>{{ c }}</option>{% endfor %}</select></label>
+      <label class="wide">شهر<input name="city" list="edit-cities" required maxlength="80" value="{{ ad.city }}"><datalist id="edit-cities">{% for c in cities %}<option value="{{ c }}">{% endfor %}</datalist></label>
+      <label class="wide">توضیحات<textarea name="description" rows="4" maxlength="5000">{{ ad.description }}</textarea></label>
+      {% if ad.image1 %}<div class="current-image"><span>تصویر فعلی اول</span><img src="{{ ad.image1.url }}" alt="تصویر فعلی آگهی"></div>{% endif %}
+      <label class="wide">تصویر اول جدید (اختیاری)<input type="file" name="image1" accept="image/jpeg,image/png,image/webp"><small class="field-hint">در صورت انتخاب تصویر جدید، تصویر فعلی جایگزین می‌شود.</small></label>
+      {% if ad.image2 %}<div class="current-image"><span>تصویر فعلی دوم</span><img src="{{ ad.image2.url }}" alt="تصویر فعلی دوم"></div>{% endif %}
+      <label class="wide">تصویر دوم جدید (اختیاری)<input type="file" name="image2" accept="image/jpeg,image/png,image/webp"></label>
+      {% if ad.image3 %}<div class="current-image"><span>تصویر فعلی سوم</span><img src="{{ ad.image3.url }}" alt="تصویر فعلی سوم"></div>{% endif %}
+      <label class="wide">تصویر سوم جدید (اختیاری)<input type="file" name="image3" accept="image/jpeg,image/png,image/webp"></label>
+      <input type="hidden" name="latitude" value="{{ ad.latitude|default:'' }}">
+      <input type="hidden" name="longitude" value="{{ ad.longitude|default:'' }}">
+      <button class="btn primary wide" type="submit">ذخیره تغییرات</button>
+    </form>
+  </section>
+</main>
+{% endblock %}

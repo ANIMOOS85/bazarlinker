@@ -1,0 +1,14 @@
+{% extends 'market/base.html' %}
+{% block title %}خطای موقت | {{ settings.site_name|default:'بازار لینکَر' }}{% endblock %}
+{% block content %}
+<main class="wrap error-page" dir="rtl">
+  <section class="error-card error-card-500">
+    <div class="error-visual" aria-hidden="true"><div class="error-orbit orbit-one"></div><div class="error-orbit orbit-two"></div><div class="error-shop"><div class="error-awning"><i></i><i></i><i></i><i></i><i></i></div><div class="error-shop-body"><span class="error-window"></span><span class="error-door"></span></div></div><span class="error-number">500</span></div>
+    <span class="eyebrow">یک مشکل موقت پیش آمده</span>
+    <h1>فعلاً نتوانستیم این صفحه را باز کنیم</h1>
+    <p>مشکلی هنگام پردازش درخواست رخ داد. لطفاً کمی بعد دوباره تلاش کن یا به صفحه اصلی برگرد.</p>
+    <div class="error-actions"><a class="btn primary" href="{% url 'home' %}">بازگشت به صفحه اصلی <span aria-hidden="true">←</span></a></div>
+    <div class="error-help"><span>✦</span> بازار لینکَر؛ کسب‌وکارهای محلی، نزدیک‌تر از همیشه</div>
+  </section>
+</main>
+{% endblock %}
